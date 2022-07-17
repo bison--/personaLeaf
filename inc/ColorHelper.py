@@ -6,19 +6,6 @@ from math import floor
 class ColorHelper:
     @staticmethod
     def lerp_RGB(start_color, end_color, value):
-        '''
-        public static Color LerpRGB (Color a, Color b, float t)
-        {
-            return new Color
-            (
-                a.r + (b.r - a.r) * t,
-                a.g + (b.g - a.g) * t,
-                a.b + (b.b - a.b) * t,
-                a.a + (b.a - a.a) * t
-            );
-        }
-        '''
-
         return [
             start_color[0] + (end_color[0] - start_color[0]) * value,
             start_color[1] + (end_color[1] - start_color[1]) * value,
@@ -83,30 +70,15 @@ class ColorHelper:
             ColorHelper.float_to_byte(as_color[2])
         ]
 
-
     @staticmethod
     def float_to_byte(value):
-        #(f >= 1.0 ? 255 : (f <= 0.0 ? 0 : (int)floor(f * 256.0)))
         if value >= 1.0:
             return 255
         elif value <= 0.0:
             return 0
         else:
             return int(floor(value * 256.0))
-            '''if calculated > 255:
-                return 255
-            elif calculated < 0:
-                return 0
-            else:
-                return calculated'''
 
-        # broken on 0!
-        #return max(0, min(255, int(floor(value * 256.0))))
-
-    # 0 <= stepNumber <= lastStepNumber
     @staticmethod
-    def interpolate(startValue, endValue, stepNumber, lastStepNumber):
-        return (endValue - startValue) * stepNumber / lastStepNumber + startValue
-
-
-
+    def interpolate(start_value, end_value, step_number, last_step_number):
+        return (end_value - start_value) * step_number / last_step_number + start_value

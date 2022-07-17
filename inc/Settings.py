@@ -14,12 +14,12 @@ class Settings:
     def load_files(self):
         try:
             self.load_known_devices()
-        except Exception as ex:
+        except FileNotFoundError:
             print('no known devices')
 
         try:
             self.load_auth()
-        except Exception as ex:
+        except FileNotFoundError:
             print('not auth file')
 
     def get_first_device_ip(self):
@@ -30,7 +30,6 @@ class Settings:
 
     def load_auth(self):
         auth_code_json = json.loads(open(Settings.SETTINGS_FILE_AUTH).read())
-        #print(auth_code_json)
         self.auth_code = auth_code_json['auth-token']
 
 

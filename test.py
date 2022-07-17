@@ -1,3 +1,4 @@
+import json
 from nanoleafapi import discovery
 from nanoleafapi import Nanoleaf, NanoleafRegistrationError
 
@@ -6,7 +7,8 @@ def test_connection(ip):
     try:
         nl = Nanoleaf(ip)
 
-        print(nl.get_info())
+        info = nl.get_info()
+        print(json.dumps(info, indent=4, sort_keys=True))
         print(nl.auth_token)
         return False
     except NanoleafRegistrationError as nre:
@@ -16,6 +18,7 @@ def test_connection(ip):
             return False
 
     return True
+
 
 print('SCANNING')
 

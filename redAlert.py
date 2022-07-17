@@ -5,9 +5,10 @@ from nanoleafapi import Nanoleaf
 
 nl = Nanoleaf(settings.get_first_device_ip())
 
-# set red
+# initialise setting red and dim the light off
 nl.set_color(colors.RED)
 nl.set_brightness(0)
+time.sleep(0.5)
 
 keep_running = True
 while keep_running:
